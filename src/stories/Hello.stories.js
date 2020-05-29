@@ -1,6 +1,6 @@
 import React from 'react';
 import Hello from "../components/Hello";
-import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean,number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
 export default {
@@ -10,13 +10,15 @@ export default {
 };
 
 export const hello = () => {
-    // knobs 만들기
+    // knobs 만들기(라벨:화면에 보일 글자,임시값)
     const big = boolean('bold',false);
     const name = text('name', 'Storybook');
+    const num = number("number",0);
     return (
         <Hello
             name={name}
             big={big}
+            num={num}
             onHello={action('onHello')}
             onBye={action('onBye')}
         />
@@ -24,7 +26,8 @@ export const hello = () => {
 };
 // knobs 적용 되는 부분 만든곳
 hello.story = {
-    name: 'example'
+    name: 'example',
+
 };
 
 export const standard = () => <Hello name="Storybook" />;
